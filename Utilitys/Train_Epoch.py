@@ -26,21 +26,13 @@ def train_each_epoch(model, ssd_loss, loss_history, optimizer, current_epoch, ep
                 if cuda:
                     images = images.cuda()
                     targets = targets.cuda()
-                    # ----------------------#
-            #   前向传播
-            # ----------------------#
+
             out = model(images)
-            # ----------------------#
-            #   清零梯度
-            # ----------------------#
+
             optimizer.zero_grad()
-            # ----------------------#
-            #   计算损失
-            # ----------------------#
+
             loss = ssd_loss.forward(targets, out)
-            # ----------------------#
-            #   反向传播
-            # ----------------------#
+
             loss.backward()
             optimizer.step()
 
